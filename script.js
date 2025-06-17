@@ -47,4 +47,26 @@ function animateSections() {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navList = document.getElementById('nav-list');
+
+    if (navToggle && navList) {
+        navToggle.addEventListener('click', function () {
+            const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', !expanded);
+            navToggle.classList.toggle('active');
+            navList.classList.toggle('open');
+        });
+        // Close menu when a link is clicked (mobile UX)
+        navList.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.classList.remove('active');
+                navList.classList.remove('open');
+            });
+        });
+    }
+});
+
 document.addEventListener('DOMContentLoaded', animateSections);

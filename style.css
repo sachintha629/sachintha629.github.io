@@ -17,6 +17,7 @@ header {
     box-shadow: 0 4px 32px #00000033;
     border-bottom: 2px solid #ffd70044;
     position: relative;
+    z-index: 2000;
 }
 header h1 {
     font-family: 'Montserrat', Arial, sans-serif;
@@ -256,6 +257,105 @@ h2 {
     text-align: center;
 }
 
+/* Hamburger menu styles - VVIP/Professional look */
+.nav-toggle {
+    display: none;
+    background: rgba(24,28,43,0.85);
+    border: 2px solid #ffd700;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 6rem;
+    right: 0.5rem;
+    z-index: 100000;
+    width: 48px;
+    height: 48px;
+    box-shadow: 0 4px 24px #ffd70033, 0 1.5px 6px #ffd70011;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+.nav-toggle:focus {
+    outline: 2px solid #ffd700;
+    outline-offset: 2px;
+}
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    gap: 6px;
+}
+.hamburger span {
+    display: block;
+    width: 26px;
+    height: 3.5px;
+    background: linear-gradient(90deg, #ffd700 0%, #fffbe7 100%);
+    border-radius: 2px;
+    transition: all 0.35s cubic-bezier(.77,0,.18,1);
+    box-shadow: 0 1px 6px #ffd70044;
+}
+.nav-toggle.active .hamburger span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+.nav-toggle.active .hamburger span:nth-child(2) {
+    opacity: 0;
+}
+.nav-toggle.active .hamburger span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+@media (max-width: 900px) {
+    .nav-toggle {
+        display: flex;
+    }
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 1.5rem;
+        background: linear-gradient(135deg, #23243a 80%, #ffd70022 100%);
+        width: 97vbw;
+        box-shadow: 0 12px 48px #ffd70033, 0 2px 8px #ffd70022;
+        border-radius: 0 0 22px 22px;
+        padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+        margin: 0;
+        z-index: 90000;
+        text-align: right;
+        border: 2px solid #ffd70044;
+        animation: fadeInDown 0.5s;
+    }
+    nav ul.open {
+        display: flex;
+    }
+    nav ul.open li {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: navLinkFadeIn 0.5s forwards;
+    }
+    nav ul.open li:nth-child(1) { animation-delay: 0.10s; }
+    nav ul.open li:nth-child(2) { animation-delay: 0.22s; }
+    nav ul.open li:nth-child(3) { animation-delay: 0.34s; }
+    nav ul.open li:nth-child(4) { animation-delay: 0.46s; }
+    nav ul li {
+        display: block;
+        margin: 18px 24px;
+        font-size: 1.2rem;
+    }
+    nav ul li a {
+        color: #ffd700;
+        font-weight: 600;
+        font-size: 1.15rem;
+        letter-spacing: 1.2px;
+        padding: 0.5rem 0.7rem;
+        border-radius: 8px;
+        transition: background 0.2s, color 0.2s;
+    }
+    nav ul li a:hover {
+        background: #ffd700;
+        color: #23243a;
+    }
+}
 /* Responsive Design Enhancements */
 @media (max-width: 1024px) {
     main {
@@ -399,6 +499,16 @@ body, main, section, header, footer {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+@keyframes navLinkFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 a:not(.linkedin-btn), a:not(.linkedin-btn):visited, a:not(.linkedin-btn):active {
     color: #fff !important;
