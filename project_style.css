@@ -1,0 +1,258 @@
+/* --- SDOS Project Pages: Modern Portfolio Look --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato:wght@400;500&display=swap');
+
+body {
+    font-family: 'Lato', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #181c2b 0%, #23243a 100%);
+    color: #eaeaea;
+    min-height: 100vh;
+    letter-spacing: 0.01em;
+    display: flex;
+    flex-direction: column;
+}
+header, footer {
+    text-align: center;
+    padding: 2.5rem 1rem 1.5rem 1rem;
+    background: rgba(24,28,43,0.95);
+    color: #ffd700;
+    box-shadow: 0 4px 32px #00000033;
+    border-bottom: 2px solid #ffd70044;
+    position: relative;
+}
+header h1 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    color: #ffd700;
+    text-shadow: 0 2px 24px #ffd70033, 0 1px 0 #fff2;
+    animation: fadeInDown 1.2s cubic-bezier(.77,0,.18,1) 0.1s both;
+}
+footer {
+    font-size: 1.1rem;
+    color: #ffd700;
+    border-top: 2px solid #ffd70044;
+    margin-top: 2rem;
+    box-shadow: 0 -2px 24px #ffd70022;
+    background: rgba(24,28,43,0.95);
+}
+main {
+    max-width: 950px;
+    margin: 3rem auto 2rem auto;
+    background: rgba(255,255,255,0.10);
+    padding: 2.5rem 2rem;
+    border-radius: 32px;
+    box-shadow: 0 8px 48px #00000033, 0 2px 8px #ffd70022;
+    backdrop-filter: blur(8px);
+    border: 1.5px solid #ffd70033;
+    position: relative;
+}
+.project-card {
+    background: rgba(24,28,43,0.95);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px #ffd70022, 0 1.5px 6px #ffd70011;
+    padding: 2.5rem 2rem 2rem 2rem;
+    margin-bottom: 2.5rem;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    border: 1.5px solid #ffd70044;
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    animation: cardIn 0.9s cubic-bezier(.77,0,.18,1) 0.2s forwards;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+.project-card:hover {
+    box-shadow: 0 8px 32px #ffd70033, 0 2px 8px #ffd70022;
+    background: #23243a;
+    transform: translateY(-2px) scale(1.01);
+}
+.project-card h2 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    margin-top: 0;
+    font-size: 1.7rem;
+    color: #ffd700;
+    letter-spacing: 0.5px;
+    animation: fadeInUp 1s cubic-bezier(.77,0,.18,1) 0.3s both;
+    transition: color 0.25s, text-shadow 0.25s;
+}
+.project-card h2:hover {
+    color: #fffbe7;
+    text-shadow: 0 2px 8px #ffd70033;
+    cursor: pointer;
+}
+.project-date {
+    color: #ffd700cc;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+.project-association {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 0.7rem;
+}
+.project-logo {
+    width: 44px;
+    height: 44px;
+    margin-right: 0.5rem;
+    border-radius: 8px;
+    object-fit: contain;
+    background: hsl(0, 0%, 100%);
+    box-shadow: 0 2px 8px #ffd70011;
+    border: 1.5px solid #ffd70033;
+    transition: box-shadow 0.25s, filter 0.25s, transform 0.25s;
+}
+.project-logo:hover {
+    box-shadow: 0 4px 24px #ffd70033;
+    filter: brightness(1.04) saturate(1.08);
+    transform: scale(1.03);
+    cursor: pointer;
+}
+.project-skills {
+    margin-top: 1.2rem;
+    color: #ffd700;
+    font-size: 1.08rem;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+    animation: fadeInUp 1s cubic-bezier(.77,0,.18,1) 0.5s both;
+}
+.project-skills ul {
+    padding-left: 1.2rem;
+    margin: 0.5rem 0 0 0;
+}
+.project-skills li {
+    margin-bottom: 0.2rem;
+}
+/* Image Slider Styles */
+.slider {
+    max-width: 700px;
+    margin: 2rem auto 1.5rem auto;
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 32px #ffd70022;
+    background: rgba(24,28,43,0.85);
+    border: 1.5px solid #ffd70033;
+}
+.slides {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+}
+.slide {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: auto;
+    min-width: 100%;
+    opacity: 0;
+    transition: opacity 0.7s cubic-bezier(.77,0,.18,1);
+    border-radius: 24px;
+    object-fit: cover;
+    background: #23243a;
+    box-shadow: 0 2px 18px #ffd70033;
+    display: none;
+    max-height: 480px;
+}
+.slide.active {
+    opacity: 1;
+    display: block;
+}
+.slider-dots {
+    text-align: center;
+    margin-top: 1rem;
+}
+.dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    margin: 0 4px;
+    margin-bottom: 0.5rem;
+    background: #ffd70044;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    border: 1.5px solid #ffd700;
+}
+.dot.active, .dot:hover {
+    background: #ffd700;
+    transform: scale(1.15);
+}
+
+/* Responsive Design Enhancements */
+@media (max-width: 1024px) {
+    main {
+        max-width: 98vw;
+        padding: 1.2rem;
+    }
+    .slider {
+        max-width: 98vw;
+    }
+}
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.7rem;
+    }
+    main {
+        padding: 1rem;
+    }
+    .slider {
+        max-width: 100vw;
+    }
+    .slide {
+        aspect-ratio: 16 / 9;
+        max-height: 260px;
+    }
+}
+@media (max-width: 480px) {
+    header {
+        padding: 0.7rem 0;
+    }
+    main {
+        padding: 0.5rem;
+    }
+    .slider {
+        border-radius: 8px;
+    }
+    .slide {
+        aspect-ratio: 16 / 9;
+        max-height: 160px;
+    }
+}
+
+/* Animations */
+@keyframes cardIn {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

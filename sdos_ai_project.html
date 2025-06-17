@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SDOS AI Project</title>
+    <link rel="stylesheet" href="project_style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <h1>SDOS AI Project</h1>
+    </header>
+    <main>
+        <section class="project-card">
+            <h2>SDOS AI Project</h2>
+            <p class="project-date">Apr 2025 - Present</p>
+            <div class="project-association">
+                <img src="images/sdos_ai_logo.png" alt="SDOS AI Logo" class="project-logo">
+                <span>Associated with SDOS AI</span>
+            </div>
+            <p>
+                SDOS AI is an advanced artificial intelligence program dedicated to student success, analyzing individual learning patterns to offer personalized recommendations and support.
+            </p>
+            <div class="project-skills">
+                <strong>Python (Programming Language)</strong>, <strong>Django</strong> and <strong>+10 skills</strong>
+            </div>
+        </section>
+    </main>
+     <!-- Image Slider Start -->
+    <div class="slider">
+        <div class="slides">
+            <img src="sdos_ai_screenshots/sdos_ai_1.png" class="slide active" alt="SDOS AI Screenshot 1">
+        </div>
+        <div class="slider-dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+        </div>
+    </div>
+    <!-- Image Slider End -->
+    <footer>
+        <p>&copy; 2025 Sachintha Dilshan Kariyawasam </p>
+    </footer>
+    <script>
+let slideIndex = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+
+function showSlidesAuto() {
+    slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        dots[i].classList.remove('active');
+    });
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1;}
+    slides[slideIndex-1].classList.add('active');
+    dots[slideIndex-1].classList.add('active');
+    setTimeout(showSlidesAuto, 2500); // Change image every 2.5 seconds
+}
+
+function currentSlide(n) {
+    slideIndex = n-1;
+    showSlidesManual();
+}
+
+function showSlidesManual() {
+    slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        dots[i].classList.remove('active');
+    });
+    if (slideIndex >= slides.length) slideIndex = 0;
+    if (slideIndex < 0) slideIndex = slides.length-1;
+    slides[slideIndex].classList.add('active');
+    dots[slideIndex].classList.add('active');
+}
+
+dots.forEach((dot, i) => {
+    dot.onclick = () => { currentSlide(i+1); };
+});
+
+showSlidesAuto();
+</script>
+</body>
+</html>
