@@ -1,90 +1,247 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark scroll-smooth">
 <head>
-    <title>SDOS Web Project</title>
-    <link rel="stylesheet" href="project_style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <header>
-        <h1>SDOS Web Project</h1>
-    </header>
-    <main>
-        <section class="project-card">
-            <h2>SDOS Web Project</h2>
-            <p class="project-date">Apr 2024 - Present</p>
-            <div class="project-association">
-                <img src="images/sdos_web_logo.png" alt="SDOS Logo" class="project-logo">
-                <span>Associated with SDOS - Sachintha Dilshan Online School</span>
-            </div>
-            <p>
-                This is a versatile secure e-learning platform, currently serving students from Grade 6 to G. C. E. (Advanced Level).
-            </p>
-            <div class="project-skills">
-                <strong>Python (Programming Language)</strong>, <strong>Django</strong> and <strong>+6 skills</strong>
-            </div>
-        </section>
-    </main>
-    <!-- Image Slider Start -->
-    <div class="slider">
-        <div class="slides">
-            <img src="sdos_web_screenshots/home_1.png" class="slide active" alt="SDOS Web Screenshot 1">
-            <img src="sdos_web_screenshots/home_2.png" class="slide" alt="SDOS Web Screenshot 2">
-            <img src="sdos_web_screenshots/home_3.png" class="slide" alt="SDOS Web Screenshot 3">
-            <img src="sdos_web_screenshots/about_1.png" class="slide" alt="SDOS Web Screenshot 4">
-            <img src="sdos_web_screenshots/about_2.png" class="slide" alt="SDOS Web Screenshot 5">
-        </div>
-        <div class="slider-dots">
-            <span class="dot active" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-            <span class="dot" onclick="currentSlide(5)"></span>
-        </div>
-    </div>
-    <!-- Image Slider End -->
-    <footer>
-        <p>&copy; 2025 Sachintha Dilshan Kariyawasam </p>
-    </footer>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; frame-ancestors 'none'; object-src 'none';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="color-scheme" content="dark light">
+
+    <title>SDOS Web Project | Sachintha Dilshan Kariyawasam</title>
+    <meta name="description" content="Case study on SDOS Web Project - A secure e-learning platform developed by Sachintha Dilshan Kariyawasam.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Compiled Tailwind CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Theme Initialization -->
     <script>
-let slideIndex = 0;
-const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.dot');
+        (function() {
+            try {
+                const savedTheme = localStorage.getItem('theme');
+                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+                    document.documentElement.classList.add('dark');
+                } else if (savedTheme === 'light') {
+                    document.documentElement.classList.remove('dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-[#090D16] dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-cyan-500/20 selection:text-cyan-400">
 
-function showSlidesAuto() {
-    slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        dots[i].classList.remove('active');
-    });
-    slideIndex++;
-    if (slideIndex > slides.length) {slideIndex = 1;}
-    slides[slideIndex-1].classList.add('active');
-    dots[slideIndex-1].classList.add('active');
-    setTimeout(showSlidesAuto, 2500); // Change image every 2.5 seconds
-}
+    <!-- Ambient Glowing Background Elements -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10" aria-hidden="true">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-500/15 dark:bg-cyan-600/10 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/2 -right-40 w-96 h-96 bg-indigo-500/15 dark:bg-indigo-600/10 rounded-full blur-3xl"></div>
+    </div>
 
-function currentSlide(n) {
-    slideIndex = n-1;
-    showSlidesManual();
-}
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 glass-nav transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-18">
+                <!-- Back Link -->
+                <a href="index.html#projects" class="inline-flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-white transition-colors group">
+                    <svg class="w-4 h-4 text-slate-400 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                    <span>Back to Portfolio</span>
+                </a>
 
-function showSlidesManual() {
-    slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        dots[i].classList.remove('active');
-    });
-    if (slideIndex >= slides.length) slideIndex = 0;
-    if (slideIndex < 0) slideIndex = slides.length-1;
-    slides[slideIndex].classList.add('active');
-    dots[slideIndex].classList.add('active');
-}
+                <!-- Branding & Theme Toggle -->
+                <div class="flex items-center gap-3">
+                    <button id="theme-toggle" type="button" aria-label="Toggle theme mode" class="p-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 transition-all cursor-pointer">
+                        <svg id="sun-icon" class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                        <svg id="moon-icon" class="w-5 h-5 block dark:hidden text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                    </button>
+                    <a href="index.html#contact" class="hidden sm:inline-flex btn-primary text-xs py-2 px-4">
+                        Contact Creator
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
 
-dots.forEach((dot, i) => {
-    dot.onclick = () => { currentSlide(i+1); };
-});
+    <main class="flex-grow py-12 md:py-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            <!-- Breadcrumbs & Meta Tag -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400">
+                    <a href="index.html" class="hover:underline">Portfolio</a>
+                    <span>/</span>
+                    <a href="index.html#projects" class="hover:underline">Projects</a>
+                    <span>/</span>
+                    <span class="text-cyan-600 dark:text-cyan-400 font-semibold">SDOS Web Project</span>
+                </div>
 
-showSlidesAuto();
-</script>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="flex items-center gap-4">
+                        <img src="images/sdos_web_logo.png" alt="SDOS Logo" class="w-14 h-14 object-contain rounded-2xl bg-white dark:bg-slate-900 p-1.5 border border-slate-200 dark:border-slate-800 shadow-md">
+                        <div>
+                            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">SDOS Web Project</h1>
+                            <p class="text-xs sm:text-sm font-mono text-cyan-600 dark:text-cyan-400">Associated with SDOS - Sachintha Dilshan Online School</p>
+                        </div>
+                    </div>
+                    <span class="badge badge-cyan text-xs py-1.5 px-3 self-start sm:self-center font-mono">Apr 2024 - Present</span>
+                </div>
+            </div>
+
+            <!-- Hero Gallery & Viewer -->
+            <div class="glass-card rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
+                
+                <!-- Main Featured Viewport -->
+                <div class="relative bg-slate-950 aspect-video flex items-center justify-center overflow-hidden border-b border-slate-200/80 dark:border-slate-800/80">
+                    <img id="active-screenshot" src="sdos_web_screenshots/home_1.png" alt="SDOS Web Screenshot" class="w-full h-full object-contain">
+                    <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between bg-slate-900/80 backdrop-blur-md px-4 py-2.5 rounded-xl border border-slate-700/60 text-xs text-white">
+                        <span id="screenshot-caption" class="font-medium">SDOS Platform - Landing View</span>
+                        <span id="screenshot-index" class="font-mono text-cyan-400">1 of 5</span>
+                    </div>
+                </div>
+
+                <!-- Thumbnails Switcher -->
+                <div class="px-6 sm:px-10 flex gap-3 overflow-x-auto pb-4 pt-1">
+                    <button type="button" onclick="selectScreenshot(0, 'Landing View', 'sdos_web_screenshots/home_1.png')" class="thumb-btn flex-shrink-0 w-24 sm:w-28 aspect-video rounded-xl overflow-hidden border-2 border-cyan-500 shadow-sm focus:outline-none cursor-pointer">
+                        <img src="sdos_web_screenshots/home_1.png" alt="Thumb 1" class="w-full h-full object-cover">
+                    </button>
+                    <button type="button" onclick="selectScreenshot(1, 'Course Catalog View', 'sdos_web_screenshots/home_2.png')" class="thumb-btn flex-shrink-0 w-24 sm:w-28 aspect-video rounded-xl overflow-hidden border-2 border-transparent hover:border-slate-400 dark:hover:border-slate-600 focus:outline-none cursor-pointer">
+                        <img src="sdos_web_screenshots/home_2.png" alt="Thumb 2" class="w-full h-full object-cover">
+                    </button>
+                    <button type="button" onclick="selectScreenshot(2, 'Lecture Schedule View', 'sdos_web_screenshots/home_3.png')" class="thumb-btn flex-shrink-0 w-24 sm:w-28 aspect-video rounded-xl overflow-hidden border-2 border-transparent hover:border-slate-400 dark:hover:border-slate-600 focus:outline-none cursor-pointer">
+                        <img src="sdos_web_screenshots/home_3.png" alt="Thumb 3" class="w-full h-full object-cover">
+                    </button>
+                    <button type="button" onclick="selectScreenshot(3, 'About Academy Overview', 'sdos_web_screenshots/about_1.png')" class="thumb-btn flex-shrink-0 w-24 sm:w-28 aspect-video rounded-xl overflow-hidden border-2 border-transparent hover:border-slate-400 dark:hover:border-slate-600 focus:outline-none cursor-pointer">
+                        <img src="sdos_web_screenshots/about_1.png" alt="Thumb 4" class="w-full h-full object-cover">
+                    </button>
+                    <button type="button" onclick="selectScreenshot(4, 'Mission & Faculty View', 'sdos_web_screenshots/about_2.png')" class="thumb-btn flex-shrink-0 w-24 sm:w-28 aspect-video rounded-xl overflow-hidden border-2 border-transparent hover:border-slate-400 dark:hover:border-slate-600 focus:outline-none cursor-pointer">
+                        <img src="sdos_web_screenshots/about_2.png" alt="Thumb 5" class="w-full h-full object-cover">
+                    </button>
+                </div>
+
+                <!-- Deep Dive Description -->
+                <div class="p-6 sm:p-10 pt-2 space-y-8">
+                    <div class="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">Platform Overview</h3>
+                        <p>
+                            <strong>SDOS (Sachintha Dilshan Online School)</strong> is a versatile, secure e-learning platform engineered to provide high-quality education to Sri Lankan students from Grade 6 to G.C.E. Advanced Level.
+                        </p>
+                        <p>
+                            Designed with modern web technologies, the platform provides seamless video lectures, downloadable tutorial resources, student attendance tracking, and intuitive dashboards for students and parents.
+                        </p>
+                    </div>
+
+                    <!-- Platform Features -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-200/80 dark:border-slate-800/80">
+                        <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-1.5">
+                            <span class="text-lg">🛡️</span>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-sm">Secure Authentication</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-400">Multi-tier role access ensuring student and administrative accounts are strictly isolated.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-1.5">
+                            <span class="text-lg">📚</span>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-sm">Structured Curriculum</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-400">Courses organized comprehensively from Grade 6 up to Advanced Level Bio & Math streams.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-1.5">
+                            <span class="text-lg">📱</span>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-sm">Full Mobile Responsiveness</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-400">Tailored UI allowing students to learn smoothly on smartphones, tablets, or laptops.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 space-y-1.5">
+                            <span class="text-lg">⚡</span>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-sm">High Performance & Uptime</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-400">Optimized asset loading and caching ensuring low latency across all mobile networks in Sri Lanka.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tech Stack Breakdown -->
+                    <div class="space-y-3 pt-4 border-t border-slate-200/80 dark:border-slate-800/80">
+                        <h3 class="text-sm font-mono font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Technology Stack & Competencies</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="badge badge-purple">Python</span>
+                            <span class="badge badge-primary">Django Framework</span>
+                            <span class="badge badge-cyan">HTML5 & CSS3</span>
+                            <span class="badge badge-cyan">JavaScript</span>
+                            <span class="badge badge-emerald">Tailwind CSS</span>
+                            <span class="badge badge-purple">Secure Authentication</span>
+                            <span class="badge badge-primary">Cloud Hosting</span>
+                            <span class="badge bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Git & GitHub</span>
+                        </div>
+                    </div>
+
+                    <!-- Navigation to sibling project -->
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-200/80 dark:border-slate-800/80">
+                        <a href="sdos_ai_project.html" class="btn-secondary w-full sm:w-auto text-sm py-2.5">
+                            ← Previous: SDOS AI Project
+                        </a>
+                        <a href="index.html#projects" class="btn-primary w-full sm:w-auto text-sm py-2.5">
+                            <span>Return to Portfolio</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200/80 dark:border-slate-800/80 bg-white/60 dark:bg-slate-950/60 backdrop-blur-md py-8">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+            <div>&copy; 2026 Sachintha Dilshan Kariyawasam. All rights reserved.</div>
+            <a href="index.html" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Return to Homepage</a>
+        </div>
+    </footer>
+
+    <!-- Interactive scripts -->
+    <script>
+        const screenshots = [
+            { src: 'sdos_web_screenshots/home_1.png', caption: 'SDOS Platform - Landing View' },
+            { src: 'sdos_web_screenshots/home_2.png', caption: 'SDOS Platform - Course Catalog View' },
+            { src: 'sdos_web_screenshots/home_3.png', caption: 'SDOS Platform - Lecture Schedule View' },
+            { src: 'sdos_web_screenshots/about_1.png', caption: 'SDOS Platform - About Academy Overview' },
+            { src: 'sdos_web_screenshots/about_2.png', caption: 'SDOS Platform - Mission & Faculty View' }
+        ];
+
+        function selectScreenshot(index, caption, src) {
+            const activeImg = document.getElementById('active-screenshot');
+            const captionEl = document.getElementById('screenshot-caption');
+            const indexEl = document.getElementById('screenshot-index');
+            const buttons = document.querySelectorAll('.thumb-btn');
+
+            if (activeImg) activeImg.src = src;
+            if (captionEl) captionEl.textContent = `SDOS Platform - ${caption}`;
+            if (indexEl) indexEl.textContent = `${index + 1} of ${screenshots.length}`;
+
+            buttons.forEach((btn, i) => {
+                if (i === index) {
+                    btn.classList.add('border-cyan-500');
+                    btn.classList.remove('border-transparent');
+                } else {
+                    btn.classList.remove('border-cyan-500');
+                    btn.classList.add('border-transparent');
+                }
+            });
+        }
+
+        // Theme toggle
+        document.getElementById('theme-toggle')?.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
 </body>
 </html>
