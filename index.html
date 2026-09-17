@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; frame-ancestors 'none'; object-src 'none';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; object-src 'none';">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="color-scheme" content="dark light">
@@ -1087,20 +1087,136 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="border-t border-slate-200/80 dark:border-slate-800/80 bg-white/60 dark:bg-slate-950/60 backdrop-blur-md py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
-            <div class="flex items-center gap-2">
-                <div class="w-6 h-6 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-mono font-bold text-[10px]">
-                    SD
+    <footer class="relative border-t border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-[#070a12]/80 backdrop-blur-xl pt-16 pb-12 overflow-hidden">
+        <!-- Luminous Animated Top Line Accent -->
+        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-indigo-500/60 via-cyan-400/70 to-transparent"></div>
+
+        <!-- Ambient Background Glow Orb -->
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-48 bg-gradient-to-t from-indigo-500/10 via-cyan-500/5 to-transparent blur-3xl pointer-events-none -z-10" aria-hidden="true"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <!-- Main 4-Column Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
+                
+                <!-- Col 1: Brand & Bio (5 cols) -->
+                <div class="lg:col-span-5 space-y-5">
+                    <!-- Brand Identity with Animated Logo -->
+                    <a href="#home" class="inline-flex items-center gap-3.5 group focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-2xl" aria-label="Back to Top">
+                        <div class="relative flex items-center justify-center">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-indigo-500 to-pink-500 rounded-2xl blur-md opacity-40 group-hover:opacity-90 transition-all duration-300"></div>
+                            <div class="relative w-11 h-11 rounded-2xl p-[2px] overflow-hidden group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-[-100%] animate-spin-slow bg-[conic-gradient(from_0deg,#22d3ee,#6366f1,#ec4899,#22d3ee)]"></div>
+                                <div class="relative w-full h-full rounded-[14px] bg-slate-900/95 dark:bg-[#0c101c] flex items-center justify-center shadow-inner">
+                                    <svg class="w-7 h-7 transition-all duration-300 group-hover:scale-110" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <linearGradient id="sdFootGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" stop-color="#38BDF8"/>
+                                                <stop offset="45%" stop-color="#818CF8"/>
+                                                <stop offset="100%" stop-color="#F43F5E"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <path class="transition-transform duration-300 group-hover:-translate-x-1" d="M8 14L3 20L8 26" stroke="#22D3EE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path class="transition-transform duration-300 group-hover:translate-x-1" d="M32 14L37 20L32 26" stroke="#F43F5E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M27 12L23 28" stroke="#A855F7" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                                        <text x="18" y="25" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="900" fill="url(#sdFootGrad)" text-anchor="middle" letter-spacing="-0.5">SD</text>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-bold text-slate-900 dark:text-white tracking-tight text-lg group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                Sachintha Dilshan
+                            </span>
+                            <span class="text-xs text-slate-500 dark:text-slate-400 font-mono">Official Portfolio • 2026</span>
+                        </div>
+                    </a>
+
+                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-md">
+                        Management Service Officer (IT Division) at the Government of Sri Lanka, AI Model Developer, and Founder of SDOS &amp; sdos.ai. Dedicated to solving complex problems through technology and education.
+                    </p>
+
+                    <!-- Live System Status Badge -->
+                    <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-medium bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 shadow-sm">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                        <span>Open for Collaborations &amp; IT Consultations</span>
+                    </div>
                 </div>
-                <span>&copy; 2026 Sachintha Dilshan Kariyawasam. All rights reserved.</span>
+
+                <!-- Col 2: Navigation Links (2 cols) -->
+                <div class="lg:col-span-2 space-y-4">
+                    <h4 class="text-xs font-mono uppercase tracking-wider font-semibold text-slate-900 dark:text-white">Navigation</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
+                        <li><a href="#home" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors inline-flex items-center gap-1.5 group"><span class="text-indigo-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">→</span>Home</a></li>
+                        <li><a href="#about" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors inline-flex items-center gap-1.5 group"><span class="text-indigo-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">→</span>About Me</a></li>
+                        <li><a href="#projects" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors inline-flex items-center gap-1.5 group"><span class="text-indigo-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">→</span>Projects</a></li>
+                        <li><a href="#skills" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors inline-flex items-center gap-1.5 group"><span class="text-indigo-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">→</span>Skills &amp; Stack</a></li>
+                        <li><a href="#experience" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors inline-flex items-center gap-1.5 group"><span class="text-indigo-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">→</span>Timeline</a></li>
+                        <li><a href="#contact" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors inline-flex items-center gap-1.5 group"><span class="text-indigo-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">→</span>Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Ventures & Platforms (2 cols) -->
+                <div class="lg:col-span-2 space-y-4">
+                    <h4 class="text-xs font-mono uppercase tracking-wider font-semibold text-slate-900 dark:text-white">Ventures</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
+                        <li><a href="sdos_web_project.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors inline-flex items-center gap-1.5 group"><span class="text-indigo-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">→</span>SDOS Platform</a></li>
+                        <li><a href="sdos_ai_project.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors inline-flex items-center gap-1.5 group"><span class="text-indigo-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">→</span>sdos.ai Engine</a></li>
+                        <li><a href="#experience" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors inline-flex items-center gap-1.5 group"><span class="text-indigo-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">→</span>Randima STUDIO</a></li>
+                        <li><a href="#experience" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors inline-flex items-center gap-1.5 group"><span class="text-indigo-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">→</span>Govt IT Division</a></li>
+                        <li><a href="#experience" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors inline-flex items-center gap-1.5 group"><span class="text-indigo-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">→</span>OUSL BSE (Hons)</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Direct Connect & Back-to-Top (3 cols) -->
+                <div class="lg:col-span-3 space-y-4">
+                    <h4 class="text-xs font-mono uppercase tracking-wider font-semibold text-slate-900 dark:text-white">Direct Connect</h4>
+                    <div class="space-y-2 text-xs font-mono">
+                        <a href="https://wa.me/94763014997" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-100/80 dark:bg-slate-900/80 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 border border-slate-200/80 dark:border-slate-800 hover:border-emerald-500/40 transition-all text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400">
+                            <span class="text-emerald-500 text-sm">💬</span>
+                            <span class="truncate">+94 76 30 14 997</span>
+                        </a>
+                        <a href="mailto:dilshansachintha338@gmail.com" class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-100/80 dark:bg-slate-900/80 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 border border-slate-200/80 dark:border-slate-800 hover:border-indigo-500/40 transition-all text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+                            <span class="text-indigo-500 text-sm">📧</span>
+                            <span class="truncate">dilshansachintha338@gmail.com</span>
+                        </a>
+                        <div class="flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-100/50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-800/60 text-slate-600 dark:text-slate-400">
+                            <span class="text-purple-500 text-sm">📍</span>
+                            <span class="truncate">Baddegama, Galle, Sri Lanka</span>
+                        </div>
+                    </div>
+
+                    <!-- Back to Top Button -->
+                    <div class="pt-2">
+                        <a href="#home" class="group flex items-center justify-between w-full px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 border border-slate-200 dark:border-slate-700 hover:border-indigo-600 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-indigo-500/30">
+                            <span>Back to Top</span>
+                            <span class="group-hover:-translate-y-1 transition-transform duration-300 text-sm">↑</span>
+                        </a>
+                    </div>
+                </div>
+
             </div>
-            <div class="flex items-center gap-4">
-                <a href="#home" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Back to Top ↑</a>
-                <span>•</span>
-                <span>Crafted with Tailwind CSS</span>
-                <span>•</span>
-                <a href="https://github.com/sachintha629" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">GitHub Profile</a>
+
+            <!-- Bottom Sub-Footer Separator & Copyright -->
+            <div class="pt-8 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+                <div class="flex items-center gap-2 text-center sm:text-left">
+                    <span>&copy; 2026 Sachintha Dilshan Kariyawasam. All rights reserved.</span>
+                </div>
+                
+                <!-- Social Icon Pills -->
+                <div class="flex items-center gap-3">
+                    <a href="https://github.com/sachintha629" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-white transition-all duration-200 hover:scale-110">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sachintha-dilshan-kariyawasam" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-[#0A66C2] transition-all duration-200 hover:scale-110">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    <a href="https://wa.me/94763014997" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-emerald-500 transition-all duration-200 hover:scale-110">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.35.49 1.199.533 1.286.044.087.073.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.086.087-.178.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.073.376-.043.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.044.072.044.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.155.57 4.175 1.564 5.924l-1.657 6.059 6.223-1.633c1.696.924 3.633 1.45 5.702 1.45 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
