@@ -282,34 +282,97 @@ function sendViaWhatsApp() {
 }
 
 // ==========================================
-// 5. ACTIVE NAV LINK HIGHLIGHT (IntersectionObserver)
+// 5. ACTIVE NAV LINK (IntersectionObserver)
 // ==========================================
 (function setupActiveNav() {
     const sections = document.querySelectorAll('main section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
-
     if (!sections.length || !navLinks.length) return;
-
-    const observerOptions = {
-        root: null,
-        rootMargin: '-20% 0px -70% 0px',
-        threshold: 0
-    };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const id = entry.target.getAttribute('id');
                 navLinks.forEach(link => {
-                    if (link.getAttribute('href') === `#${id}`) {
-                        link.classList.add('text-indigo-600', 'dark:text-white', 'bg-slate-100', 'dark:bg-slate-800/80');
-                    } else {
-                        link.classList.remove('text-indigo-600', 'dark:text-white', 'bg-slate-100', 'dark:bg-slate-800/80');
-                    }
+                    const isMatch = link.getAttribute('href') === `#${id}`;
+                    link.classList.toggle('active', isMatch);
                 });
             }
         });
-    }, observerOptions);
+    }, { root: null, rootMargin: '-20% 0px -70% 0px', threshold: 0 });
 
     sections.forEach(sec => observer.observe(sec));
+})();
+
+// ==========================================
+// 6. SCROLL PROGRESS BAR
+// ==========================================
+(function setupScrollProgress() {
+    const bar = document.getElementById('scroll-progress');
+    if (!bar) return;
+    window.addEventListener('scroll', () => {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        bar.style.width = pct + '%';
+    }, { passive: true });
+})();
+
+// ==========================================
+// 7. SCROLL-REVEAL (Fade-up on scroll)
+// ==========================================
+(function setupScrollReveal() {
+    const els = document.querySelectorAll('.reveal');
+    if (!els.length) return;
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    els.forEach(el => observer.observe(el));
+})();
+
+// ==========================================
+// 8. TYPEWRITER EFFECT (Hero subtitle)
+// ==========================================
+(function setupTypewriter() {
+    const el = document.getElementById('typewriter-text');
+    if (!el) return;
+    const roles = [
+        'MSO (IT) – Govt of Sri Lanka',
+        'AI Trainer & Developer',
+        'Mathematics Lecturer',
+        'Software Engineering Undergraduate',
+        'Founder @ SDOS & sdos.ai',
+        'Co-Founder @ Randima STUDIO'
+    ];
+    let roleIdx = 0, charIdx = 0, deleting = false;
+
+    function tick() {
+        const current = roles[roleIdx];
+        if (deleting) {
+            charIdx--;
+            el.textContent = current.slice(0, charIdx);
+            if (charIdx === 0) {
+                deleting = false;
+                roleIdx = (roleIdx + 1) % roles.length;
+                setTimeout(tick, 400);
+                return;
+            }
+            setTimeout(tick, 40);
+        } else {
+            charIdx++;
+            el.textContent = current.slice(0, charIdx);
+            if (charIdx === current.length) {
+                deleting = true;
+                setTimeout(tick, 2000);
+                return;
+            }
+            setTimeout(tick, 70);
+        }
+    }
+    tick();
 })();

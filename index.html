@@ -50,10 +50,13 @@
 
     <!-- Ambient Glowing Background Elements -->
     <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10" aria-hidden="true">
-        <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-500/15 dark:bg-indigo-600/10 rounded-full blur-3xl"></div>
-        <div class="absolute top-1/3 -right-40 w-96 h-96 bg-cyan-500/15 dark:bg-cyan-600/10 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-10 left-1/4 w-96 h-96 bg-purple-500/15 dark:bg-purple-600/10 rounded-full blur-3xl"></div>
+        <div class="orb-1 absolute -top-40 -left-40 w-96 h-96 bg-indigo-500/15 dark:bg-indigo-600/10 rounded-full blur-3xl"></div>
+        <div class="orb-2 absolute top-1/3 -right-40 w-96 h-96 bg-cyan-500/15 dark:bg-cyan-600/10 rounded-full blur-3xl"></div>
+        <div class="orb-3 absolute bottom-10 left-1/4 w-96 h-96 bg-purple-500/15 dark:bg-purple-600/10 rounded-full blur-3xl"></div>
     </div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
 
     <!-- Navigation Bar -->
     <header class="sticky top-0 z-40 glass-nav transition-all duration-300">
@@ -61,8 +64,8 @@
             <div class="flex items-center justify-between h-18">
                 <!-- Logo -->
                 <a href="#home" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg p-1" aria-label="Go to Home">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center text-white font-mono font-bold text-base shadow-md shadow-indigo-500/30 group-hover:scale-105 transition-transform duration-200">
-                        &lt;SD/&gt;
+                    <div class="logo-ring w-[46px] h-[46px] group-hover:scale-105 transition-transform duration-300">
+                        <div class="logo-inner">&lt;SD/&gt;</div>
                     </div>
                     <div class="flex flex-col">
                         <span class="font-bold text-slate-900 dark:text-white tracking-tight text-base group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
@@ -97,7 +100,7 @@
                     </button>
 
                     <!-- Quick Connect Button (Desktop) -->
-                    <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl shadow-md shadow-indigo-600/20 transition-all duration-200">
+                    <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white btn-shimmer rounded-xl shadow-md shadow-indigo-600/20 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                         <span>Get In Touch</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                     </a>
@@ -138,14 +141,14 @@
                     <!-- Left Column: Introduction & Bio -->
                     <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
                         <!-- Status Badge -->
-                        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 shadow-sm">
+                        <div class="hero-animate hero-animate-delay-1 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 shadow-sm">
                             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
                             <span class="w-2 h-2 rounded-full bg-emerald-500 -ml-4"></span>
                             <span>Management Service Officer (IT) | Available for Collaborations</span>
                         </div>
 
                         <!-- Main Heading -->
-                        <div class="space-y-2">
+                        <div class="hero-animate hero-animate-delay-2 space-y-2">
                             <p class="text-sm md:text-base font-mono font-medium text-indigo-600 dark:text-indigo-400 tracking-wide uppercase">
                                 Welcome to my official portfolio
                             </p>
@@ -154,24 +157,28 @@
                                 <span class="gradient-text">Sachintha Dilshan</span> <br />
                                 Kariyawasam
                             </h1>
+                            <!-- Typewriter -->
+                            <p class="text-base sm:text-lg font-mono text-indigo-500 dark:text-indigo-400 min-h-[1.75rem]">
+                                <span id="typewriter-text"></span><span class="typewriter-cursor"></span>
+                            </p>
                         </div>
 
                         <!-- Role Chips -->
-                        <div class="flex flex-wrap gap-2 justify-center lg:justify-start pt-1">
+                        <div class="hero-animate hero-animate-delay-3 flex flex-wrap gap-2 justify-center lg:justify-start pt-1">
                             <span class="badge badge-primary">🏛️ MSO (IT) - Govt of Sri Lanka</span>
-                            <span class="badge badge-cyan">🤖 AI Trainer & Developer</span>
+                            <span class="badge badge-cyan">🤖 AI Trainer &amp; Developer</span>
                             <span class="badge badge-purple">🎓 BSE (Hons) Undergraduate</span>
-                            <span class="badge badge-emerald">🚀 Founder @ SDOS & sdos.ai</span>
+                            <span class="badge badge-emerald">🚀 Founder @ SDOS &amp; sdos.ai</span>
                             <span class="badge bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">🎨 Co-Founder @ Randima STUDIO</span>
                         </div>
 
                         <!-- Descriptive Intro -->
-                        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                            Management Service Officer (IT) at the Government of Sri Lanka and EdTech Entrepreneur. Software Engineering Undergraduate at the Open University of Sri Lanka. Founder of <strong class="text-indigo-600 dark:text-indigo-400 font-semibold">SDOS</strong> & <strong class="text-cyan-600 dark:text-cyan-400 font-semibold">sdos.ai</strong>, Co-Founder of <strong class="text-purple-600 dark:text-purple-400 font-semibold">Randima STUDIO</strong>, and experienced Mathematics Lecturer bridging public sector IT, algorithmic problem-solving, and AI model training.
+                        <p class="hero-animate hero-animate-delay-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                            Management Service Officer (IT) at the Government of Sri Lanka and EdTech Entrepreneur. Software Engineering Undergraduate at the Open University of Sri Lanka. Founder of <strong class="text-indigo-600 dark:text-indigo-400 font-semibold">SDOS</strong> &amp; <strong class="text-cyan-600 dark:text-cyan-400 font-semibold">sdos.ai</strong>, Co-Founder of <strong class="text-purple-600 dark:text-purple-400 font-semibold">Randima STUDIO</strong>, and experienced Mathematics Lecturer bridging public sector IT, algorithmic problem-solving, and AI model training.
                         </p>
 
                         <!-- CTA Action Buttons -->
-                        <div class="flex flex-wrap gap-3.5 justify-center lg:justify-start pt-3">
+                        <div class="hero-animate hero-animate-delay-4 flex flex-wrap gap-3.5 justify-center lg:justify-start pt-3">
                             <a href="#projects" class="btn-primary">
                                 <span>Explore Projects</span>
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
