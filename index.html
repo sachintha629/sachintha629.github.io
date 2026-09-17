@@ -29,7 +29,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- Compiled Tailwind CSS -->
-    <link rel="stylesheet" href="css/style.css?v=2.2">
+    <link rel="stylesheet" href="css/style.css?v=2.3">
 
     <!-- Theme Initialization (Prevents FOUC) -->
     <script>
@@ -141,29 +141,86 @@
                         <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                     </a>
 
-                    <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-btn" type="button" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden p-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                            <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
+                    <!-- Animated Morphing Hamburger Button -->
+                    <button id="mobile-menu-btn" type="button" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu-drawer" class="md:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 p-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-800/80 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer overflow-hidden">
+                        <span class="hamburger-line w-5 h-0.5 bg-slate-700 dark:bg-slate-200 rounded-full"></span>
+                        <span class="hamburger-line w-5 h-0.5 bg-slate-700 dark:bg-slate-200 rounded-full"></span>
+                        <span class="hamburger-line w-5 h-0.5 bg-slate-700 dark:bg-slate-200 rounded-full"></span>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile Drawer Navigation -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-[#090D16]/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-1.5 transition-all">
-            <a href="#home" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800/80 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Home</a>
-            <a href="#about" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800/80 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">About</a>
-            <a href="#projects" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800/80 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Projects</a>
-            <a href="#skills" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800/80 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Skills</a>
-            <a href="#experience" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800/80 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Timeline & Education</a>
-            <a href="#contact" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800/80 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contact</a>
-            <div class="pt-3 border-t border-slate-200 dark:border-slate-800">
-                <a href="https://wa.me/94763014997" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-medium text-white bg-emerald-600 hover:bg-emerald-500 shadow-md">
-                    <span>Chat on WhatsApp</span>
-                </a>
+        <!-- Mobile Backdrop Overlay -->
+        <div id="mobile-backdrop" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-30 opacity-0 pointer-events-none md:hidden" aria-hidden="true"></div>
+
+        <!-- Modern Mobile Drawer Navigation -->
+        <div id="mobile-menu-drawer" class="fixed top-[74px] sm:top-[82px] left-0 right-0 z-35 md:hidden transform -translate-y-6 opacity-0 pointer-events-none transition-all duration-300 ease-out">
+            <div class="mx-3 sm:mx-6 p-4 sm:p-6 rounded-3xl bg-white/95 dark:bg-[#0c101c]/95 backdrop-blur-2xl border border-slate-200/90 dark:border-indigo-500/30 shadow-2xl shadow-indigo-950/20 space-y-3 max-h-[82vh] overflow-y-auto">
+                <!-- Navigation Links with Icons and Numbers -->
+                <nav class="space-y-1.5" aria-label="Mobile Navigation">
+                    <a href="#home" class="mobile-nav-item mobile-nav-link flex items-center justify-between px-4 py-3 rounded-2xl text-sm sm:text-base font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800/80 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-sm">🏠</span>
+                            <span>Home</span>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">01</span>
+                    </a>
+                    <a href="#about" class="mobile-nav-item mobile-nav-link flex items-center justify-between px-4 py-3 rounded-2xl text-sm sm:text-base font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800/80 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center text-sm">👤</span>
+                            <span>About Me</span>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">02</span>
+                    </a>
+                    <a href="#projects" class="mobile-nav-item mobile-nav-link flex items-center justify-between px-4 py-3 rounded-2xl text-sm sm:text-base font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800/80 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-xl bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400 flex items-center justify-center text-sm">🚀</span>
+                            <span>Projects &amp; Ventures</span>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">03</span>
+                    </a>
+                    <a href="#skills" class="mobile-nav-item mobile-nav-link flex items-center justify-between px-4 py-3 rounded-2xl text-sm sm:text-base font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800/80 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center text-sm">⚡</span>
+                            <span>Skills &amp; Tech</span>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">04</span>
+                    </a>
+                    <a href="#experience" class="mobile-nav-item mobile-nav-link flex items-center justify-between px-4 py-3 rounded-2xl text-sm sm:text-base font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800/80 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-sm">🎓</span>
+                            <span>Timeline &amp; Education</span>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">05</span>
+                    </a>
+                    <a href="#contact" class="mobile-nav-item mobile-nav-link flex items-center justify-between px-4 py-3 rounded-2xl text-sm sm:text-base font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-800/80 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center text-sm">✉️</span>
+                            <span>Get In Touch</span>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">06</span>
+                    </a>
+                </nav>
+
+                <!-- Divider with ambient gradient -->
+                <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent"></div>
+
+                <!-- Quick Connect Actions in Mobile Drawer -->
+                <div class="mobile-nav-item space-y-2.5 pt-1">
+                    <a href="https://wa.me/94763014997" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2.5 w-full py-3 rounded-2xl font-semibold text-white bg-emerald-600 hover:bg-emerald-500 shadow-lg shadow-emerald-600/20 transition-all">
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.35.49 1.199.533 1.286.044.087.073.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.086.087-.178.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.073.376-.043.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.044.072.044.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.155.57 4.175 1.564 5.924l-1.657 6.059 6.223-1.633c1.696.924 3.633 1.45 5.702 1.45 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/></svg>
+                        <span>Chat on WhatsApp</span>
+                    </a>
+                    <div class="grid grid-cols-2 gap-2">
+                        <a href="mailto:dilshansachintha338@gmail.com" class="flex items-center justify-center gap-1.5 py-2.5 rounded-2xl text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                            <span>📧 Email Direct</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/sachintha-dilshan-kariyawasam" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 py-2.5 rounded-2xl text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                            <span>💼 LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -1080,6 +1137,6 @@
     </dialog>
 
     <!-- Custom Script -->
-    <script src="script.js?v=2.2"></script>
+    <script src="script.js?v=2.3"></script>
 </body>
 </html>

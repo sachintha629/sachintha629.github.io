@@ -34,15 +34,14 @@
 })();
 
 // ==========================================
-// 2. MOBILE MENU DRAWER
+// 2. MODERN RESPONSIVE MOBILE MENU DRAWER
 // ==========================================
 (function initMobileMenu() {
     const menuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const hamburgerIcon = document.getElementById('hamburger-icon');
-    const closeIcon = document.getElementById('close-icon');
+    const mobileDrawer = document.getElementById('mobile-menu-drawer');
+    const mobileBackdrop = document.getElementById('mobile-backdrop');
 
-    if (!menuBtn || !mobileMenu) return;
+    if (!menuBtn || !mobileDrawer) return;
 
     function toggleMenu(forceClose) {
         const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
@@ -50,21 +49,28 @@
 
         if (shouldClose) {
             menuBtn.setAttribute('aria-expanded', 'false');
-            mobileMenu.classList.add('hidden');
-            if (hamburgerIcon) hamburgerIcon.classList.remove('hidden');
-            if (closeIcon) closeIcon.classList.add('hidden');
+            menuBtn.classList.remove('open');
+            mobileDrawer.classList.remove('open');
+            if (mobileBackdrop) mobileBackdrop.classList.remove('open');
+            document.body.style.overflow = '';
         } else {
             menuBtn.setAttribute('aria-expanded', 'true');
-            mobileMenu.classList.remove('hidden');
-            if (hamburgerIcon) hamburgerIcon.classList.add('hidden');
-            if (closeIcon) closeIcon.classList.remove('hidden');
+            menuBtn.classList.add('open');
+            mobileDrawer.classList.add('open');
+            if (mobileBackdrop) mobileBackdrop.classList.add('open');
+            document.body.style.overflow = 'hidden';
         }
     }
 
     menuBtn.addEventListener('click', () => toggleMenu());
 
-    // Close on navigation link click
-    mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+    // Close when clicking outside on backdrop
+    if (mobileBackdrop) {
+        mobileBackdrop.addEventListener('click', () => toggleMenu(true));
+    }
+
+    // Close on any mobile nav link click
+    mobileDrawer.querySelectorAll('.mobile-nav-link').forEach(link => {
         link.addEventListener('click', () => toggleMenu(true));
     });
 
@@ -74,6 +80,13 @@
             toggleMenu(true);
         }
     });
+
+    // Auto-close if screen is resized beyond mobile breakpoint
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768 && menuBtn.getAttribute('aria-expanded') === 'true') {
+            toggleMenu(true);
+        }
+    }, { passive: true });
 })();
 
 // ==========================================
@@ -375,4 +388,84 @@ function sendViaWhatsApp() {
         }
     }
     tick();
+})();
+
+// ==========================================
+// 9. MODERN SMOOTH ANIMATED MOUSE POINTER (DESKTOP)
+// ==========================================
+(function initCustomCursor() {
+    // Only activate on devices with mouse/trackpad pointer
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+    const dot = document.createElement('div');
+    dot.className = 'custom-cursor-dot';
+    const ring = document.createElement('div');
+    ring.className = 'custom-cursor-ring';
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+
+    let mouseX = -100, mouseY = -100;
+    let ringX = -100, ringY = -100;
+    let isVisible = false;
+
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        dot.style.left = mouseX + 'px';
+        dot.style.top = mouseY + 'px';
+
+        if (!isVisible) {
+            dot.style.opacity = '1';
+            ring.style.opacity = '1';
+            ringX = mouseX;
+            ringY = mouseY;
+            isVisible = true;
+        }
+    }, { passive: true });
+
+    document.addEventListener('mouseleave', () => {
+        dot.style.opacity = '0';
+        ring.style.opacity = '0';
+        isVisible = false;
+    });
+
+    document.addEventListener('mouseenter', () => {
+        dot.style.opacity = '1';
+        ring.style.opacity = '1';
+        isVisible = true;
+    });
+
+    // 60-120fps physics lerp interpolation for the follower ring
+    function renderCursor() {
+        // Smooth lerp: moves smoothly towards mouse coordinates
+        ringX += (mouseX - ringX) * 0.18;
+        ringY += (mouseY - ringY) * 0.18;
+        ring.style.left = ringX + 'px';
+        ring.style.top = ringY + 'px';
+        requestAnimationFrame(renderCursor);
+    }
+    requestAnimationFrame(renderCursor);
+
+    // Magnify cursor over interactive elements
+    const interactiveSelectors = 'a, button, input, textarea, select, [role="button"], .glass-card-hover, .badge, .btn-primary, .btn-secondary, #theme-toggle';
+
+    document.addEventListener('mouseover', (e) => {
+        if (e.target.closest(interactiveSelectors)) {
+            document.body.classList.add('cursor-hover');
+        }
+    }, { passive: true });
+
+    document.addEventListener('mouseout', (e) => {
+        if (e.target.closest(interactiveSelectors)) {
+            document.body.classList.remove('cursor-hover');
+        }
+    }, { passive: true });
+
+    // Click compression
+    document.addEventListener('mousedown', () => {
+        document.body.classList.add('cursor-click');
+    });
+    document.addEventListener('mouseup', () => {
+        document.body.classList.remove('cursor-click');
+    });
 })();

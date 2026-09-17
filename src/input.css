@@ -229,3 +229,146 @@
   transform: translateY(-2px);
   box-shadow: 0 8px 24px -4px rgba(99,102,241,0.5);
 }
+
+/* ================================================
+   ANIMATED HAMBURGER ICON (MORPH TO 'X')
+   ================================================ */
+.hamburger-line {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.2s ease,
+              background-color 0.2s ease;
+}
+#mobile-menu-btn.open .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+  background-color: #6366f1;
+}
+#mobile-menu-btn.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+#mobile-menu-btn.open .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  background-color: #6366f1;
+}
+
+/* ================================================
+   MOBILE MENU DRAWER ANIMATIONS
+   ================================================ */
+#mobile-backdrop {
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#mobile-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#mobile-menu-drawer {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.25s ease;
+}
+#mobile-menu-drawer.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Cascading slide-in for items */
+#mobile-menu-drawer.open .mobile-nav-item {
+  animation: mobileNavCascade 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes mobileNavCascade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#mobile-menu-drawer.open .mobile-nav-item:nth-child(1) { animation-delay: 0.04s; }
+#mobile-menu-drawer.open .mobile-nav-item:nth-child(2) { animation-delay: 0.08s; }
+#mobile-menu-drawer.open .mobile-nav-item:nth-child(3) { animation-delay: 0.12s; }
+#mobile-menu-drawer.open .mobile-nav-item:nth-child(4) { animation-delay: 0.16s; }
+#mobile-menu-drawer.open .mobile-nav-item:nth-child(5) { animation-delay: 0.20s; }
+#mobile-menu-drawer.open .mobile-nav-item:nth-child(6) { animation-delay: 0.24s; }
+#mobile-menu-drawer.open .mobile-nav-item:nth-child(7) { animation-delay: 0.28s; }
+
+/* ================================================
+   CUSTOM ANIMATED SMOOTH MOUSE CURSOR (DESKTOP)
+   ================================================ */
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background: #22d3ee;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.9), 0 0 4px #6366f1;
+    opacity: 0;
+  }
+
+  .custom-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid rgba(99, 102, 241, 0.65);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999998;
+    transform: translate(-50%, -50%);
+    transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease,
+                background-color 0.25s ease,
+                opacity 0.25s ease,
+                box-shadow 0.25s ease;
+    box-shadow: 0 0 16px rgba(99, 102, 241, 0.3);
+    opacity: 0;
+  }
+
+  /* Hover state when mouse is over links, buttons, interactive cards */
+  body.cursor-hover .custom-cursor-ring {
+    width: 54px;
+    height: 54px;
+    border-color: rgba(34, 211, 238, 0.9);
+    background-color: rgba(99, 102, 241, 0.12);
+    box-shadow: 0 0 24px rgba(34, 211, 238, 0.5), inset 0 0 12px rgba(99, 102, 241, 0.2);
+    backdrop-filter: blur(1px);
+  }
+  body.cursor-hover .custom-cursor-dot {
+    width: 5px;
+    height: 5px;
+    background: #f43f5e;
+    box-shadow: 0 0 12px rgba(244, 63, 94, 0.9);
+  }
+
+  /* Click / Active state */
+  body.cursor-click .custom-cursor-ring {
+    width: 28px;
+    height: 28px;
+    border-color: #ec4899;
+    background-color: rgba(236, 72, 153, 0.2);
+  }
+  body.cursor-click .custom-cursor-dot {
+    transform: translate(-50%, -50%) scale(1.4);
+    background: #ec4899;
+  }
+}
+
+/* Hide custom cursor on mobile / touch devices */
+@media (hover: none) or (pointer: coarse) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none !important;
+  }
+}
+
